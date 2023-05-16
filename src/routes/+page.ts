@@ -1,11 +1,8 @@
-import { audioDir } from '@tauri-apps/api/path';
-import { readDir, type FileEntry } from '@tauri-apps/api/fs';
+import { readDir, type FileEntry, BaseDirectory } from '@tauri-apps/api/fs';
 
 export async function load({}) {
-  const lookupDirectory: string = await audioDir();
-
   let musics: FileEntry[] = [];
-  const entries: FileEntry[] = await readDir(lookupDirectory, { recursive: true });
+  const entries: FileEntry[] = await readDir('', { dir: BaseDirectory.Audio, recursive: true });
 
   (function processEntries(entries: FileEntry[]) {
     for (const entry of entries)
@@ -13,7 +10,6 @@ export async function load({}) {
   })(entries);
 
   return {
-    folder: lookupDirectory,
     musics,
   };
 }

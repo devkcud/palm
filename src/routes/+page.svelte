@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { FileEntry } from '@tauri-apps/api/fs';
 
-  export let data: { folder: string, musics: FileEntry[] };
+  export let data: { musics: FileEntry[] };
 </script>
 
-<p>Found at {data.folder}: {data.musics.length}</p>
+<p>Found: {data.musics.length}</p>
 
 <ol>
   {#each data.musics as music}
